@@ -1,4 +1,4 @@
-interface Chatbot {
+interface ConversationRequirements {
 
     void chat();
     void printTranscript();
