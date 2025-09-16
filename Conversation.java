@@ -1,5 +1,5 @@
 
-class Conversation implements Chatbot {
+class Conversation implements ConversationRequirements {
 
   // Attributes 
 
