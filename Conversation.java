@@ -91,8 +91,8 @@ class Conversation implements ConversationRequirements {
   public static void main(String[] arguments) {
     List<String> history = new ArrayList<>();
     String[] fixed_replies = new String[]{"Mmm-hm", "That's great", "Interesting", "I see...", "I want know more about this"};
-    String[] fromwords = new String[]{"I","me", "am", "you", "my", "your"};
-    String[] towords   = new String[]{"you","you", "are", "me","your", "my"};
+    String[] fromwords = new String[]{"I","me", "am", "you", "my", "your", "are"};
+    String[] towords   = new String[]{"you","you", "are", "me","your", "my", "is"};
     Conversation myConversation = new Conversation(history, fixed_replies, fromwords, towords);
     myConversation.chat();
     myConversation.printTranscript();
