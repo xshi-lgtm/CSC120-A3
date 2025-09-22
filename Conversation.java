@@ -36,6 +36,7 @@ class Conversation implements ConversationRequirements {
 
     for (int i = 0; i < n; i++){
       String user_input = scanner.nextLine();
+
       transcript.add("User: "+ user_input);
       String bot_respond = respond(user_input);
       System.out.println(bot_respond);
@@ -49,8 +50,12 @@ class Conversation implements ConversationRequirements {
    * Prints transcript of conversation
    */
   public void printTranscript() {
-
+    System.out.println("\nTranscript:");
+    for (int i = 0; i < transcript.size(); i++){
+      System.out.println(transcript.get(i));
+    }
   }
+
 
   /**
    * Gives appropriate response (mirrored or canned) to user input
@@ -59,14 +64,22 @@ class Conversation implements ConversationRequirements {
    */
   public String respond(String inputString) {
     Boolean replaced = false;
-    for (int i = 0; i < detectedWords.length; i++){
-      if (inputString.contains(detectedWords[i])){
-        inputString = inputString.replace(detectedWords[i], changeWord[i]);
-        replaced = true;
+    String[] respond_list =  inputString.split(" ");
+
+    for (int j = 0; j < respond_list.length; j++) {
+      String respond_words = respond_list[j].toLowerCase();
+      for (int i = 0; i < detectedWords.length; i++) {
+        String from = detectedWords[i].toLowerCase();
+          if (respond_words.equals(from)) {
+              respond_list[j] = changeWord[i];
+              replaced = true;
+              }
+          }
       }
-    }
+
     if (replaced){
-      return inputString;
+      String result = String.join(" ", respond_list);
+      return result;
     }else{
         Random rand = new Random();
         int index = rand.nextInt(replies.length);
@@ -74,14 +87,14 @@ class Conversation implements ConversationRequirements {
     }
   }
 
+
   public static void main(String[] arguments) {
     List<String> history = new ArrayList<>();
     String[] fixed_replies = new String[]{"Mmm-hm", "That's great", "Interesting", "I see...", "I want know more about this"};
     String[] fromwords = new String[]{"I","me", "am", "you", "my", "your"};
-    String[] towords   = new String[]{"you","you", "are", "I","your", "my"};
+    String[] towords   = new String[]{"you","you", "are", "me","your", "my"};
     Conversation myConversation = new Conversation(history, fixed_replies, fromwords, towords);
     myConversation.chat();
     myConversation.printTranscript();
-
   }
 }
