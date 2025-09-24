@@ -99,6 +99,7 @@ class Conversation implements ConversationRequirements {
 
   /**
    * Creates a new object named myConversation, runs the chat method and prints the transcript
+   * @param arguments
    */
   public static void main(String[] arguments) {
     List<String> history = new ArrayList<>(); // creates an empty array list for new chat history to store
